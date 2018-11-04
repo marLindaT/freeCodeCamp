@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>CanvasDrawingApp</title>
+	
+	</head>
+<body>
+
+
+<input id="input" placeholder ="enter your number here">
+<input id="result" placeholder="result">
+<button id ="btn">Do It</button>
+
+<script type="text/javascript">
+
+const input = document.querySelector("#input");
+const res = document.querySelector("#result");
+const btn = document.querySelector("#btn");
+
+
+
+function telephoneChecker(str){
+
+	let arr = str.split("");
+	let result = arr.filter(x=> x.match(/[0-9]/));
+	alert(result);
+	if(result.length==7||result.length==8){
+		res.value = "true";
+		return true
+		};
+
+}
+
+telephoneChecker('1234567f');
+
+
+</script>
+
+</body>
+</html>
