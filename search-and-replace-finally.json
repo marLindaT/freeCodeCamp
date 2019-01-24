@@ -1,0 +1,1 @@
+{"index.js":"\n\nfunction myReplace(str, before, after) {\n\n\tlet i = str.search(before);\n\tif(str[i]==str[i].toUpperCase()){\n\n\t\treturn str.replace(before, after[0].toUpperCase()+after.slice(1));\n\t}\n\n\treturn str.replace(before, after);\n\n\n}\nmyReplace(\"A quick brown fox jumped over the lazy dog\", \"jumped\", \"leaped\");\n"}
