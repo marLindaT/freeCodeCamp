@@ -1,0 +1,1 @@
+{"index.js":"function convertToRoman(num) {\n\t\n\tlet obj = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};\n\tlet ans = \"\";\n\nfor(let value in obj){\n\n\twhile(num - obj[value] >=0){\n\t\tans+=value;\n\t\tnum-=obj[value];\n\t}\n\n}\n\n\nreturn ans;\n}\nconvertToRoman(36);"}

@@ -1,0 +1,1 @@
+{"index.js":"\nfunction uniteUnique(arr) {\n\tlet args = Array.prototype.slice.call(arguments);\n\nlet ans = args.reduce(function(acc, curr){\n\treturn acc.concat(curr.filter(function(a){\n\t\treturn acc.indexOf(a)<0;\n\t}))\t\n})\n\n\n\n  return ans;\n}\n\nuniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);"}
