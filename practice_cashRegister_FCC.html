@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+
+
+<script>
+
+/*****************************************
+Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), 
+payment as the second argument (cash), 
+and cash-in-drawer (cid) as the third argument.
+
+cid is a 2D array listing available currency.
+
+The checkCashRegister() function should always return an object with a status key and a change key.
+
+*******************************************/
+
+function checkCashRegister(price, cash, cid) {
+//associate bills with value
+let currency = [
+ { name: 'ONE HUNDRED', val: 100.00},
+  { name: 'TWENTY', val: 20.00},
+  { name: 'TEN', val: 10.00},
+  { name: 'FIVE', val: 5.00},
+  { name: 'ONE', val: 1.00},
+  { name: 'QUARTER', val: 0.25},
+  { name: 'DIME', val: 0.10},
+  { name: 'NICKEL', val: 0.05},
+  { name: 'PENNY', val: 0.01}
+  ];
+
+//base case
+let cashRegister = {status: "", change:[]};
+//how much money is owed? cash received - price of item
+let changeDue = Number.parseFloat(cash-price).toFixed(2);
+
+//collect total value of cash in drawer cid as a 2decimal float
+let totalCash = Number.parseFloat(cid.reduce(function(acc, curr){
+	acc+=curr[1];
+	return acc;
+	},0)).toFixed(2);
+//Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+if(totalCash < changeDue){
+	cashRegister.status = "INSUFFICIENT_FUNDS";
+}
+//Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+else if(totalCash = changeDue){
+	cashRegister.status = "CLOSED";
+	cashRegister.change = cid;
+}
+//Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+else{
+cashRegister.status = "OPEN";
+let changeArr = [];
+for(let i = 0; i<currency.length; i++){
+	for(let j = 0; j<cid.length){
+		if(cid[j][0]){
+			console.log(cid[j][0]);
+		}
+	}
+}
+
+
+}
+return cashRegister;
+
+}
+
+
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+document.write(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+
+	console.log(checkCashRegister(19.5, 2000000, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+console.log(checkCashRegister(0, 1.01, [["PENNY", 1.01]]));
+
+</script>
+
+<!--------
+
+FIRST TRY SHIT BELOW
+
+<script>
+
+/*****************************************
+Design a cash register drawer function checkCashRegister() that accepts purchase price as the first argument (price), 
+payment as the second argument (cash), 
+and cash-in-drawer (cid) as the third argument.
+
+cid is a 2D array listing available currency.
+
+The checkCashRegister() function should always return an object with a status key and a change key.
+
+Return {status: "INSUFFICIENT_FUNDS", change: []} if cash-in-drawer is less than the change due, or if you cannot return the exact change.
+
+Return {status: "CLOSED", change: [...]} with cash-in-drawer as the value for the key change if it is equal to the change due.
+
+Otherwise, return {status: "OPEN", change: [...]}, with the change due in coins and bills, sorted in highest to lowest order, as the value of the change key.
+*******************************************/
+
+function checkCashRegister(price, cash, cid) {
+
+	let totalCash = cid.reduce(function(acc, curr){
+		
+		acc += curr[1];
+		
+		return acc;
+	},0);
+
+let monies = [
+ { name: 'ONE HUNDRED', val: 100.00},
+  { name: 'TWENTY', val: 20.00},
+  { name: 'TEN', val: 10.00},
+  { name: 'FIVE', val: 5.00},
+  { name: 'ONE', val: 1.00},
+  { name: 'QUARTER', val: 0.25},
+  { name: 'DIME', val: 0.10},
+  { name: 'NICKEL', val: 0.05},
+  { name: 'PENNY', val: 0.01}
+  ];
+
+if(cash-price>totalCash){
+	return {status: "INSUFFICIENT_FUNDS", change: []};
+}else if(cash-price == totalCash){
+	
+	return {status: "CLOSED", change: cid};
+}else{
+	// how much money is owed to the purchaser
+	let moneyDue = cash-price;
+	//reverse array to have largest bills at the beginning
+		let rev = cid.reverse();
+		// 2d array to hold change due to purchaser
+		let arr=[];
+
+		//create an array that return {status: "OPEN", change: [hi2lo]}
+	
+for(let i=0; i<monies.length; i++){
+	for(let j=0; j<cid.length; j++){
+		if(monies[i].name == cid[j][0] && moneyDue / monies[i].val >=0){
+//		 console.log(`monies[i].name=${monies[i].name} cid[j][0]=${cid[j][1]}`);
+		if(moneyDue / monies[i].val >= monies[i].val){
+		while(moneyDue>0 && monies[i])
+
+		}
+
+		}
+
+	}
+}	
+}
+
+}
+
+
+
+// Example cash-in-drawer array:
+// [["PENNY", 1.01],
+// ["NICKEL", 2.05],
+// ["DIME", 3.1],
+// ["QUARTER", 4.25],
+// ["ONE", 90],
+// ["FIVE", 55],
+// ["TEN", 20],
+// ["TWENTY", 60],
+// ["ONE HUNDRED", 100]]
+
+document.write(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+
+	console.log(checkCashRegister(19.5, 2000000, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));
+
+console.log(checkCashRegister(0, 1.01, [["PENNY", 1.01]]));
+
+</script>
+
+-->
+
+</body>
+</html>
